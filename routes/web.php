@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PredictionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +22,10 @@ Route::get('/pems_bay', function () {
     return view('pems_bay');
 });
 
-Route::post('/pems_bay', function () {
-    return view('pems_bay');
-});
+Route::post('/pems_bay', [PredictionController::class, 'PEMSPrediction']);
 
 Route::get('/metr_la', function () {
     return view('metr_la');
 });
 
-Route::post('/metr_la', function () {
-    return view('metr_la');
-});
+Route::post('/metr_la', [PredictionController::class, 'METRPrediction']);

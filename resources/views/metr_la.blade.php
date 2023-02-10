@@ -73,11 +73,19 @@
 
         <main class="px-3">
             <h1>METR_LA</h1>
-            <p class="lead">Please select road network:</p>
-            <p class="lead">
-                <a href="/pems_bay" class="btn btn-lg btn-light border-white bg-white">PEMS_BAY</a> &nbsp;
-                <a href="/metr_la" class="btn btn-lg btn-light border-white bg-white">METR_LA</a>
-            </p>
+            @if(isset($date))
+                <p class="lead">Return: {{ $date }}</p>
+            @endif
+            <p class="lead">Please enter datetime:</p>
+            <form action="/metr_la" method="POST">
+                {{ csrf_field() }}
+                <p class="lead">
+                    <input type="datetime-local" class="form-control" name="date" required />
+                </p>
+                <p class="lead">
+                    <input type="submit" class="btn btn-lg btn-light border-white bg-white" value="Predict"/>
+                </p>        
+            </form>
         </main>
 
         <footer class="mt-auto text-white-50">
