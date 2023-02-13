@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+// Route::get('/', [PredictionController::class, 'PEMSPrediction']);
+
 Route::get('/pems_bay', function () {
     return view('pems_bay');
 });
