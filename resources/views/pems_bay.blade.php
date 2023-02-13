@@ -73,8 +73,11 @@
 
         <main class="px-3">
             <h1>PEMS_BAY</h1>
-            @if(isset($date) && isset($data))
-                <p class="lead">Date: {{ $date }}, Count: {{ $data }}</p>
+            @if(isset($date) && isset($image))
+                <p class="lead">Date: {{ $date }}</p>
+                <p class="lead">
+                    <img src="/image/{{ $image }}" style="width: 100%" />
+                </p>
             @endif
             <p class="lead">Please enter datetime:</p>
             <form action="/pems_bay" method="POST">

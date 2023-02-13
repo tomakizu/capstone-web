@@ -9,19 +9,11 @@ use Intervention\Image\Facades\Image;
 class PredictionController extends Controller
 {
     private static function getColor($percentage) {
-        switch ($percentage) {
-            // TODO: Change the color scheme
-            case $percentage < 20.0:
-                return '#0000ff';
-            case $percentage < 40.0:
-                return '#00ff00';
-            case $percentage < 70.0:
-                return '#ffff00';
-            case $percentage < 80.0:
-                return '#ff0000';
-            default:
-                return '#ff00ff';
-        }
+        $color_scale = ['#558C00', '#5C9800', '#63A300', '#6AAF00', '#70BA00', 
+                        '#77C600', '#7ED100', '#85DD00', '#8CE800', '#93F400', 
+                        '#B7FF00', '#D3FF00', '#EFFF00', '#FFF200', '#FFD600', 
+                        '#FFB900', '#FF9D00', '#FF8000', '#FF6400', '#FF4700'];
+        return $color_scale[intval($percentage / 5)];
     }
 
     public static function PEMSPrediction(Request $request) {
@@ -37,12 +29,15 @@ class PredictionController extends Controller
                 $draw->background(self::getColor($prediction_data[$i]));
             });
         }
-        return $image->response('png');
+
+        $current_timestamp = time();
+        $image->save(public_path('image/PEMS_' . $current_timestamp . '.png'));
 
         // prepare return data
         $return = array();
         $return['date'] = $request->date;
         $return['data'] = count($prediction_data);
+        $return['image'] = 'PEMS_' . $current_timestamp . '.png';
         return view('pems_bay', $return);
     }
 
