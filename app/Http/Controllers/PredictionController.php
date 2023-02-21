@@ -38,6 +38,8 @@ class PredictionController extends Controller
         $return['date'] = $request->date;
         $return['data'] = count($prediction_data);
         $return['image'] = 'PEMS_' . $current_timestamp . '.png';
+        $return['start_datetime'] = $road_network->start_datetime;
+        $return['end_datetime'] = $road_network->end_datetime;
         return view('pems_bay', $return);
     }
 

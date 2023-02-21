@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('network_name');
             $table->string('image_name');
             $table->integer('point_size');
+            $table->timestamp('start_datetime')->nullable();
+            $table->timestamp('end_datetime')->nullable();
         });
 
         Schema::create('sensor_position', function (Blueprint $table) {

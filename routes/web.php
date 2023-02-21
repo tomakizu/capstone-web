@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PredictionController;
 
@@ -21,12 +22,24 @@ Route::get('/', function () {
 // Route::get('/', [PredictionController::class, 'PEMSPrediction']);
 
 Route::get('/pems_bay', function () {
-    return view('pems_bay');
+    $road_network = DB::table('road_network')->where('network_name', 'PEMS_BAY')->first();
+    $data = array();
+    if (!empty($road_network)) {
+        $data['start_datetime'] = $road_network->start_datetime;
+        $data['end_datetime'] = $road_network->end_datetime;
+    }
+    return view('pems_bay', $data);
 });
 
 Route::post('/pems_bay', [PredictionController::class, 'PEMSPrediction']);
 
 Route::get('/metr_la', function () {
+    $road_network = DB::table('road_network')->where('network_name', 'METR_LA')->first();
+    $data = array();
+    if (!empty($road_network)) {
+        $data['start_datetime'] = $road_network->start_datetime;
+        $data['end_datetime'] = $road_network->end_datetime;
+    }
     return view('metr_la');
 });
 

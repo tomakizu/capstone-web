@@ -83,7 +83,7 @@
             <form action="/pems_bay" method="POST">
                 {{ csrf_field() }}
                 <p class="lead">
-                    <input type="datetime-local" class="form-control" name="date" required />
+                    <input type="datetime-local" class="form-control" name="date" min="{{isset($start_datetime) ? $start_datetime : ''}}" max="{{isset($end_datetime) ? $end_datetime : ''}}" required />
                 </p>
                 <p class="lead">
                     <input type="submit" class="btn btn-lg btn-light border-white bg-white" value="Predict"/>

@@ -14,7 +14,13 @@ return new class extends Migration
     public function up()
     {
         $pems_id = DB::table('road_network')->insertGetId(
-            ['network_name' => 'PEMS_BAY', 'image_name' => 'pems_bay.png', 'point_size' => 12]
+            [
+                'network_name'   => 'PEMS_BAY', 
+                'image_name'     => 'pems_bay.png', 
+                'point_size'     => 15,
+                'start_datetime' => '2017-01-01 00:00:00',
+                'end_datetime'   => '2017-06-30 23:00:00'
+            ]
         );
 
         DB::table('sensor_position')->insert([
