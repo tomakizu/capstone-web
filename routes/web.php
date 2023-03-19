@@ -40,7 +40,7 @@ Route::get('/metr_la', function () {
         $data['start_datetime'] = $road_network->start_datetime;
         $data['end_datetime'] = $road_network->end_datetime;
     }
-    return view('metr_la');
+    return view('metr_la', $data);
 });
 
 Route::post('/metr_la', [PredictionController::class, 'METRPrediction']);

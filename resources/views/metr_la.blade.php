@@ -73,8 +73,11 @@
 
         <main class="px-3">
             <h1>METR_LA</h1>
-            @if(isset($date))
-                <p class="lead">Return: {{ $date }}</p>
+            @if(isset($date) && isset($image))
+                <p class="lead">Date: {{ $date }}</p>
+                <p class="lead">
+                    <img src="/image/{{ $image }}" style="width: 100%" />
+                </p>
             @endif
             <p class="lead">Please enter datetime:</p>
             <form action="/metr_la" method="POST">
